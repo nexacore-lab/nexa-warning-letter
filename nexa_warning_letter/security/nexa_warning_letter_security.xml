@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Allowed companies, for everybody -->
+    <record id="nexa_rule_warning_letter_company" model="ir.rule">
+        <field name="name">Warning letter: allowed companies</field>
+        <field name="model_id" ref="model_nex_warning_letter"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="nexa_rule_warning_letter_type_company" model="ir.rule">
+        <field name="name">Warning letter type: allowed companies</field>
+        <field name="model_id" ref="model_nex_warning_letter_type"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- Employees: their own issued letters and the ones they watch, read only -->
+    <record id="nexa_rule_warning_letter_employee" model="ir.rule">
+        <field name="name">Warning letter: own or watched (employee)</field>
+        <field name="model_id" ref="model_nex_warning_letter"/>
+        <field name="domain_force">[('state', '=', 'issued'), '|', ('employee_id.user_id', '=', user.id), ('watcher_ids.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- HR: every letter. Needed because the rules of the groups of a user add up. -->
+    <record id="nexa_rule_warning_letter_officer" model="ir.rule">
+        <field name="name">Warning letter: all (HR officer)</field>
+        <field name="model_id" ref="model_nex_warning_letter"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="nexa_warning_letter_type_view_list" model="ir.ui.view">
+        <field name="name">nex.warning.letter.type.list</field>
+        <field name="model">nex.warning.letter.type</field>
+        <field name="arch" type="xml">
+            <list string="Warning Letter Types" editable="bottom" decoration-muted="not active">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="validity_months"/>
+                <field name="description" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"
+                       options="{'no_create': True}"/>
+                <field name="active" widget="boolean_toggle" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="nexa_warning_letter_type_view_form" model="ir.ui.view">
+        <field name="name">nex.warning.letter.type.form</field>
+        <field name="model">nex.warning.letter.type</field>
+        <field name="arch" type="xml">
+            <form string="Warning Letter Type">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="validity_months"/>
+                        </group>
+                        <group>
+                            <field name="sequence"/>
+                            <field name="company_id" groups="base.group_multi_company"
+                                   options="{'no_create': True}"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1" colspan="2"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="nexa_action_warning_letter_type" model="ir.actions.act_window">
+        <field name="name">Warning Letter Types</field>
+        <field name="res_model">nex.warning.letter.type</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'active_test': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first warning letter type</p>
+            <p>For example: documented verbal warning, warning letter 1, 2 and 3.</p>
+        </field>
+    </record>
+
+</odoo>

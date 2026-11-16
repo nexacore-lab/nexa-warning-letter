@@ -1,0 +1,997 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* nexa_warning_letter
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-16 17:21+0000\n"
+"PO-Revision-Date: 2026-11-16 17:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: id\n"
+"Plural-Forms: \n"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "%s confirmed having read the warning letter."
+msgstr "%s mengonfirmasi telah membaca surat peringatan."
+
+#. module: nexa_warning_letter
+#: model:ir.actions.report,print_report_name:nexa_warning_letter.nexa_action_report_warning_letter
+msgid "'%s - %s' % (object.name or 'Draft', object.employee_name)"
+msgstr "'%s - %s' % (object.name or 'Draf', object.employee_name)"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+msgid ". We expect you to improve and to avoid any repetition."
+msgstr ". Kami berharap Anda melakukan perbaikan dan tidak mengulanginya."
+
+#. module: nexa_warning_letter
+#: model:mail.template,body_html:nexa_warning_letter.nexa_mail_template_warning_issued
+msgid ""
+"<div style=\"margin:0;padding:0;background:#f4f5f7;\">\n"
+"  <div style=\"max-width:600px;margin:0 auto;padding:16px;font-family:Arial,Helvetica,sans-serif;color:#374151;\">\n"
+"    <div style=\"background:#9f1d1d;color:#ffffff;padding:16px 20px;border-radius:12px 12px 0 0;\">\n"
+"      <div style=\"font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.85;\">Warning Letter</div>\n"
+"      <div style=\"font-size:20px;font-weight:bold;\"><t t-out=\"object.type_id.name or ''\"/></div>\n"
+"    </div>\n"
+"    <div style=\"background:#ffffff;padding:20px;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 12px 12px;\">\n"
+"      <p style=\"margin:0 0 12px;\">Dear <b><t t-out=\"object.employee_name or ''\"/></b>,</p>\n"
+"      <p style=\"margin:0 0 16px;\">\n"
+"        You have received a <b><t t-out=\"object.type_id.name or ''\"/></b> with the following details:\n"
+"      </p>\n"
+"      <table style=\"width:100%;border-collapse:collapse;font-size:14px;\">\n"
+"        <tr>\n"
+"          <td style=\"padding:6px 0;color:#6b7280;width:170px;\">Number</td>\n"
+"          <td style=\"padding:6px 0;\"><t t-out=\"object.name or ''\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"          <td style=\"padding:6px 0;color:#6b7280;\">Type</td>\n"
+"          <td style=\"padding:6px 0;\"><t t-out=\"object.type_id.name or ''\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"          <td style=\"padding:6px 0;color:#6b7280;\">Validity</td>\n"
+"          <td style=\"padding:6px 0;\">\n"
+"            <t t-out=\"format_date(object.effective_date)\"/> - <t t-out=\"format_date(object.end_date)\"/>\n"
+"          </td>\n"
+"        </tr>\n"
+"        <tr t-if=\"object.department_id\">\n"
+"          <td style=\"padding:6px 0;color:#6b7280;\">Department</td>\n"
+"          <td style=\"padding:6px 0;\"><t t-out=\"object.department_id.name or ''\"/></td>\n"
+"        </tr>\n"
+"      </table>\n"
+"      <p t-if=\"object.notes\" style=\"margin:16px 0 0;white-space:pre-line;\"><t t-out=\"object.notes\"/></p>\n"
+"      <p style=\"margin:16px 0 0;\">\n"
+"        Please take this as a point of attention for the future. For any question, contact HR or\n"
+"        your manager.\n"
+"      </p>\n"
+"      <div style=\"margin:20px 0 0;\">\n"
+"        <a t-att-href=\"object._nex_record_url()\" style=\"background:#9f1d1d;color:#ffffff;padding:10px 18px;border-radius:6px;text-decoration:none;font-size:14px;display:inline-block;\">\n"
+"          Read the warning letter\n"
+"        </a>\n"
+"      </div>\n"
+"      <p style=\"margin:16px 0 0;color:#9ca3af;font-size:12px;border-top:1px solid #f0f1f3;padding-top:12px;\">\n"
+"        Automatic e-mail from <t t-out=\"object.company_id.name or ''\"/>. Please do not reply.\n"
+"        <t t-if=\"object.company_id.nex_warning_cc_watchers and object.watcher_ids\">The appointed watchers receive a copy.</t>\n"
+"      </p>\n"
+"    </div>\n"
+"  </div>\n"
+"</div>\n"
+"            "
+msgstr ""
+"<div style=\"margin:0;padding:0;background:#f4f5f7;\">\n"
+"  <div style=\"max-width:600px;margin:0 auto;padding:16px;font-family:Arial,Helvetica,sans-serif;color:#374151;\">\n"
+"    <div style=\"background:#9f1d1d;color:#ffffff;padding:16px 20px;border-radius:12px 12px 0 0;\">\n"
+"      <div style=\"font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.85;\">Surat Peringatan</div>\n"
+"      <div style=\"font-size:20px;font-weight:bold;\"><t t-out=\"object.type_id.name or ''\"/></div>\n"
+"    </div>\n"
+"    <div style=\"background:#ffffff;padding:20px;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 12px 12px;\">\n"
+"      <p style=\"margin:0 0 12px;\">Yth. <b><t t-out=\"object.employee_name or ''\"/></b>,</p>\n"
+"      <p style=\"margin:0 0 16px;\">\n"
+"        Anda menerima <b><t t-out=\"object.type_id.name or ''\"/></b> dengan rincian berikut:\n"
+"      </p>\n"
+"      <table style=\"width:100%;border-collapse:collapse;font-size:14px;\">\n"
+"        <tr>\n"
+"          <td style=\"padding:6px 0;color:#6b7280;width:170px;\">Nomor</td>\n"
+"          <td style=\"padding:6px 0;\"><t t-out=\"object.name or ''\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"          <td style=\"padding:6px 0;color:#6b7280;\">Jenis</td>\n"
+"          <td style=\"padding:6px 0;\"><t t-out=\"object.type_id.name or ''\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"          <td style=\"padding:6px 0;color:#6b7280;\">Masa Berlaku</td>\n"
+"          <td style=\"padding:6px 0;\">\n"
+"            <t t-out=\"format_date(object.effective_date)\"/> - <t t-out=\"format_date(object.end_date)\"/>\n"
+"          </td>\n"
+"        </tr>\n"
+"        <tr t-if=\"object.department_id\">\n"
+"          <td style=\"padding:6px 0;color:#6b7280;\">Departemen</td>\n"
+"          <td style=\"padding:6px 0;\"><t t-out=\"object.department_id.name or ''\"/></td>\n"
+"        </tr>\n"
+"      </table>\n"
+"      <p t-if=\"object.notes\" style=\"margin:16px 0 0;white-space:pre-line;\"><t t-out=\"object.notes\"/></p>\n"
+"      <p style=\"margin:16px 0 0;\">\n"
+"        Mohon jadikan hal ini perhatian untuk ke depan. Untuk pertanyaan, hubungi HR atau\n"
+"        atasan Anda.\n"
+"      </p>\n"
+"      <div style=\"margin:20px 0 0;\">\n"
+"        <a t-att-href=\"object._nex_record_url()\" style=\"background:#9f1d1d;color:#ffffff;padding:10px 18px;border-radius:6px;text-decoration:none;font-size:14px;display:inline-block;\">\n"
+"          Baca surat peringatan\n"
+"        </a>\n"
+"      </div>\n"
+"      <p style=\"margin:16px 0 0;color:#9ca3af;font-size:12px;border-top:1px solid #f0f1f3;padding-top:12px;\">\n"
+"        Email otomatis dari <t t-out=\"object.company_id.name or ''\"/>. Mohon tidak membalas email ini.\n"
+"        <t t-if=\"object.company_id.nex_warning_cc_watchers and object.watcher_ids\">Pengamat yang ditunjuk menerima tembusan.</t>\n"
+"      </p>\n"
+"    </div>\n"
+"  </div>\n"
+"</div>\n"
+"            "
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_hr_employee_view_form
+msgid "<span class=\"o_stat_text\">Warnings</span>"
+msgstr "<span class=\"o_stat_text\">Peringatan</span>"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+msgid "<span invisible=\"name\">Draft</span>"
+msgstr "<span invisible=\"name\">Draf</span>"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+msgid "<strong>Department</strong>"
+msgstr "<strong>Departemen</strong>"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+msgid "<strong>Job Position</strong>"
+msgstr "<strong>Jabatan</strong>"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+msgid "<strong>To</strong>"
+msgstr "<strong>Kepada</strong>"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+msgid "<strong>Validity</strong>"
+msgstr "<strong>Masa Berlaku</strong>"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "A warning letter is created as a draft. It gets its number when it is issued."
+msgstr "Surat peringatan dibuat sebagai draf. Nomornya diberikan saat diterbitkan."
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter_type.py:0
+msgid "A warning letter type named %s already exists in this company."
+msgstr "Jenis surat peringatan bernama %s sudah ada di perusahaan ini."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__message_needaction
+msgid "Action Needed"
+msgstr "Perlu Tindakan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter_type__active
+#: model:ir.model.fields.selection,name:nexa_warning_letter.selection__nex_warning_letter__validity_status__active
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_search
+msgid "Active"
+msgstr "Aktif"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_hr_employee__nex_active_warning_count
+msgid "Active Warning Letters"
+msgstr "Surat Peringatan Aktif"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__activity_ids
+msgid "Activities"
+msgstr "Aktivitas"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Dekorasi Pengecualian Aktivitas"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__activity_state
+msgid "Activity State"
+msgstr "Status Aktivitas"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Ikon Jenis Aktivitas"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "An issued or cancelled warning letter cannot be changed. Reset it to draft first."
+msgstr "Surat peringatan yang sudah terbit atau dibatalkan tidak bisa diubah. Kembalikan ke draf dulu."
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "An issued warning letter cannot be deleted. Cancel it first."
+msgstr "Surat peringatan yang sudah terbit tidak bisa dihapus. Batalkan dulu."
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_type_view_form
+msgid "Archived"
+msgstr "Diarsipkan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__message_attachment_count
+msgid "Attachment Count"
+msgstr "Jumlah Lampiran"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__attachment_ids
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form_my
+msgid "Attachments"
+msgstr "Lampiran"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__can_acknowledge
+msgid "Can Acknowledge"
+msgstr "Bisa Mengonfirmasi"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+msgid "Cancel"
+msgstr "Batalkan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields.selection,name:nexa_warning_letter.selection__nex_warning_letter__state__cancelled
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_search
+msgid "Cancelled"
+msgstr "Dibatalkan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter_type__color
+msgid "Color"
+msgstr "Warna"
+
+#. module: nexa_warning_letter
+#: model:ir.model,name:nexa_warning_letter.model_res_company
+msgid "Companies"
+msgstr "Perusahaan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__company_id
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter_type__company_id
+msgid "Company"
+msgstr "Perusahaan"
+
+#. module: nexa_warning_letter
+#: model:ir.model,name:nexa_warning_letter.model_res_config_settings
+msgid "Config Settings"
+msgstr "Pengaturan Konfigurasi"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_res_company__nex_warning_cc_watchers
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_res_config_settings__nex_warning_cc_watchers
+msgid "Copy the Watchers"
+msgstr "Tembuskan ke Pengamat"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.actions.act_window,help:nexa_warning_letter.nexa_action_warning_letter
+msgid ""
+"Create a warning letter for an employee, with watchers and attachments, then issue it:\n"
+"                the employee receives it by e-mail."
+msgstr "Buat surat peringatan untuk karyawan, lengkap dengan pengamat dan lampiran, lalu terbitkan: karyawan menerimanya lewat email."
+
+#. module: nexa_warning_letter
+#: model_terms:ir.actions.act_window,help:nexa_warning_letter.nexa_action_warning_letter_type
+msgid "Create the first warning letter type"
+msgstr "Buat jenis surat peringatan pertama"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__create_uid
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter_type__create_uid
+msgid "Created by"
+msgstr "Dibuat oleh"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__create_date
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter_type__create_date
+msgid "Created on"
+msgstr "Dibuat pada"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter_type__validity_months
+msgid "Default Validity (Months)"
+msgstr "Masa Berlaku Bawaan (Bulan)"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__department_id
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_search
+msgid "Department"
+msgstr "Departemen"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter_type__description
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_type_view_form
+msgid "Description"
+msgstr "Deskripsi"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__notes
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form_my
+msgid "Details"
+msgstr "Rincian"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__display_name
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter_type__display_name
+msgid "Display Name"
+msgstr "Nama Tampilan"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_res_company.py:0
+msgid "Documented Verbal Warning"
+msgstr "Teguran Lisan Tertulis"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+#: model:ir.model.fields.selection,name:nexa_warning_letter.selection__nex_warning_letter__state__draft
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_search
+msgid "Draft"
+msgstr "Draf"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_res_company__nex_warning_notify_email
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_res_config_settings__nex_warning_notify_email
+msgid "E-mail Warning Letters to Employees"
+msgstr "Kirim Surat Peringatan ke Email Karyawan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__effective_date
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_search
+msgid "Effective Date"
+msgstr "Tanggal Berlaku"
+
+#. module: nexa_warning_letter
+#: model:ir.model,name:nexa_warning_letter.model_hr_employee
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__employee_id
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_search
+msgid "Employee"
+msgstr "Karyawan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__employee_name
+msgid "Employee Name"
+msgstr "Nama Karyawan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__watcher_ids
+msgid "Employees (for example the manager) who receive a copy of the warning letter, follow its comments and can read it."
+msgstr "Karyawan (misalnya atasan) yang menerima tembusan surat peringatan, mengikuti komentarnya, dan bisa membacanya."
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+msgid "Employees who receive a copy and follow the comments"
+msgstr "Karyawan yang menerima tembusan dan mengikuti komentar"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__end_date
+msgid "End Date"
+msgstr "Tanggal Berakhir"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "Enter the end date: this type of warning letter has no default validity."
+msgstr "Isi tanggal berakhir: jenis surat peringatan ini tidak punya masa berlaku bawaan."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields.selection,name:nexa_warning_letter.selection__nex_warning_letter__validity_status__expired
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_search
+msgid "Expired"
+msgstr "Berakhir"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+msgid "Facts and reasons of the warning letter. The employee and the watchers read this text."
+msgstr "Fakta dan alasan surat peringatan. Karyawan dan pengamat membaca teks ini."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__notes
+msgid "Facts and reasons, sent to the employee and to the watchers."
+msgstr "Fakta dan alasan, dikirim ke karyawan dan pengamat."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter_type__validity_months
+msgid "Fills the end date of a new warning letter of this type. 0: the end date is entered by hand."
+msgstr "Mengisi tanggal berakhir surat peringatan baru jenis ini. 0: tanggal berakhir diisi manual."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__message_follower_ids
+msgid "Followers"
+msgstr "Pengikut"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Pengikut (Partner)"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Ikon Font Awesome, mis. fa-tasks"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.actions.act_window,help:nexa_warning_letter.nexa_action_warning_letter_type
+msgid "For example: documented verbal warning, warning letter 1, 2 and 3."
+msgstr "Misalnya: teguran lisan tertulis, surat peringatan 1, 2, dan 3."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__has_message
+msgid "Has Message"
+msgstr "Ada Pesan"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+msgid "Human Resources"
+msgstr "Sumber Daya Manusia"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form_my
+msgid "I Have Read It"
+msgstr "Saya Sudah Membacanya"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__id
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter_type__id
+msgid "ID"
+msgstr "ID"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__activity_exception_icon
+msgid "Icon"
+msgstr "Ikon"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Ikon penanda aktivitas pengecualian."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Jika dicentang, pesan baru memerlukan perhatian Anda."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__message_has_error
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Jika dicentang, beberapa pesan mengalami kesalahan pengiriman."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__internal_note
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+msgid "Internal Note"
+msgstr "Catatan Internal"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__message_is_follower
+msgid "Is Follower"
+msgstr "Adalah Pengikut"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+msgid "Issue"
+msgstr "Terbitkan"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+msgid "Issue this warning letter? The employee and the watchers are notified."
+msgstr "Terbitkan surat peringatan ini? Karyawan dan pengamat akan diberi tahu."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields.selection,name:nexa_warning_letter.selection__nex_warning_letter__state__issued
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_search
+msgid "Issued"
+msgstr "Terbit"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__issued_on
+msgid "Issued On"
+msgstr "Diterbitkan Pada"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+msgid "Issued by"
+msgstr "Diterbitkan oleh"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_hr_employee__nex_active_warning_count
+msgid "Issued warning letters of the employee that are valid today."
+msgstr "Surat peringatan karyawan yang sudah terbit dan berlaku hari ini."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__job_title
+msgid "Job Position"
+msgstr "Jabatan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__write_uid
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter_type__write_uid
+msgid "Last Updated by"
+msgstr "Terakhir Diperbarui oleh"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__write_date
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter_type__write_date
+msgid "Last Updated on"
+msgstr "Terakhir Diperbarui pada"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__message_has_error
+msgid "Message Delivery error"
+msgstr "Kesalahan Pengiriman Pesan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__message_ids
+msgid "Messages"
+msgstr "Pesan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Tenggat Aktivitas Saya"
+
+#. module: nexa_warning_letter
+#: model:ir.actions.act_window,name:nexa_warning_letter.nexa_action_my_warning_letters
+#: model:ir.ui.menu,name:nexa_warning_letter.nexa_menu_warning_letter_my
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_list_my
+msgid "My Warning Letters"
+msgstr "Surat Peringatan Saya"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter_type__name
+msgid "Name"
+msgstr "Nama"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Tenggat Aktivitas Berikutnya"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__activity_summary
+msgid "Next Activity Summary"
+msgstr "Ringkasan Aktivitas Berikutnya"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__activity_type_id
+msgid "Next Activity Type"
+msgstr "Jenis Aktivitas Berikutnya"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "No e-mail address: the employee was not notified by e-mail."
+msgstr "Tidak ada alamat email: karyawan tidak diberi tahu lewat email."
+
+#. module: nexa_warning_letter
+#: model_terms:ir.actions.act_window,help:nexa_warning_letter.nexa_action_my_warning_letters
+msgid "No warning letter"
+msgstr "Tidak ada surat peringatan"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.actions.act_window,help:nexa_warning_letter.nexa_action_warning_letter
+msgid "No warning letter yet"
+msgstr "Belum ada surat peringatan"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+msgid "No."
+msgstr "No."
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_search
+msgid "Not Read Yet"
+msgstr "Belum Dibaca"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__name
+msgid "Number"
+msgstr "Nomor"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Jumlah Tindakan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__message_has_error_counter
+msgid "Number of errors"
+msgstr "Jumlah kesalahan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Jumlah pesan yang memerlukan tindakan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Jumlah pesan dengan kesalahan pengiriman"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_res_config_settings_view_form
+msgid "Numbering"
+msgstr "Penomoran"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "Only HR can issue, cancel or reset a warning letter."
+msgstr "Hanya HR yang bisa menerbitkan, membatalkan, atau mengembalikan surat peringatan ke draf."
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+msgid "Only HR can read this note. It is never sent to the employee or to the watchers."
+msgstr "Hanya HR yang bisa membaca catatan ini. Catatan ini tidak pernah dikirim ke karyawan atau pengamat."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__internal_note
+msgid "Only HR can read this note: it is never sent to the employee or to the watchers."
+msgstr "Hanya HR yang bisa membaca catatan ini: catatan ini tidak pernah dikirim ke karyawan atau pengamat."
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "Only a cancelled warning letter can be reset to draft."
+msgstr "Hanya surat peringatan yang dibatalkan yang bisa dikembalikan ke draf."
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "Only a draft or issued warning letter can be cancelled."
+msgstr "Hanya surat peringatan draf atau yang sudah terbit yang bisa dibatalkan."
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "Only a draft warning letter can be issued."
+msgstr "Hanya surat peringatan draf yang bisa diterbitkan."
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "Only the employee of an issued warning letter can confirm having read it."
+msgstr "Hanya karyawan penerima surat peringatan yang sudah terbit yang bisa mengonfirmasi telah membacanya."
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_res_config_settings_view_form
+msgid "Prefix and next number of the warning letters of this company."
+msgstr "Awalan dan nomor berikutnya surat peringatan perusahaan ini."
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form_my
+msgid "Print"
+msgstr "Cetak"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form_my
+msgid "Read"
+msgstr "Dibaca"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__acknowledged_on
+msgid "Read by the Employee On"
+msgstr "Dibaca Karyawan Pada"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+msgid "Read on"
+msgstr "Dibaca pada"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+msgid "Received by"
+msgstr "Diterima oleh"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+msgid "Reset to Draft"
+msgstr "Kembalikan ke Draf"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__activity_user_id
+msgid "Responsible User"
+msgstr "User Penanggung Jawab"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Kesalahan Pengiriman SMS"
+
+#. module: nexa_warning_letter
+#: model:mail.template,description:nexa_warning_letter.nexa_mail_template_warning_issued
+msgid "Sent to the employee, with a copy to the watchers, when a warning letter is issued"
+msgstr "Dikirim ke karyawan, dengan tembusan ke pengamat, saat surat peringatan diterbitkan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter_type__sequence
+msgid "Sequence"
+msgstr "Urutan"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__state
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_search
+msgid "Status"
+msgstr "Status"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Status berdasarkan aktivitas\n"
+"Terlambat: tenggat sudah lewat\n"
+"Hari ini: aktivitas jatuh hari ini\n"
+"Direncanakan: aktivitas mendatang."
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+msgid "The company gives you this"
+msgstr "Perusahaan memberikan kepada Anda"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "The company of a warning letter must be the company of its employee."
+msgstr "Perusahaan surat peringatan harus sama dengan perusahaan karyawannya."
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter_type.py:0
+msgid "The default validity must be between 0 and 60 months."
+msgstr "Masa berlaku bawaan harus antara 0 dan 60 bulan."
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "The employee cannot watch his own warning letter."
+msgstr "Karyawan tidak bisa menjadi pengamat surat peringatannya sendiri."
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "The end date cannot be earlier than the effective date."
+msgstr "Tanggal berakhir tidak boleh sebelum tanggal berlaku."
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "The end date of a warning letter is required."
+msgstr "Tanggal berakhir surat peringatan wajib diisi."
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "The file %s belongs to another document."
+msgstr "File %s milik dokumen lain."
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_res_config_settings_view_form
+msgid "The watchers of a warning letter receive a copy of that e-mail."
+msgstr "Pengamat surat peringatan menerima tembusan email tersebut."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_res_company__nex_warning_cc_watchers
+#: model:ir.model.fields,help:nexa_warning_letter.field_res_config_settings__nex_warning_cc_watchers
+msgid "The watchers of a warning letter receive a copy of the e-mail sent to the employee."
+msgstr "Pengamat surat peringatan menerima tembusan email yang dikirim ke karyawan."
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "This search on the validity is not supported: %s"
+msgstr "Pencarian masa berlaku ini tidak didukung: %s"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+msgid "This warning letter is valid from"
+msgstr "Surat peringatan ini berlaku dari"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__type_id
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_search
+msgid "Type"
+msgstr "Jenis"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Jenis aktivitas pengecualian pada rekaman."
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_res_config_settings_view_form
+msgid "Types"
+msgstr "Jenis"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_res_config_settings_view_form
+msgid "Types of warning letters and their default validity."
+msgstr "Jenis surat peringatan dan masa berlaku bawaannya."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields.selection,name:nexa_warning_letter.selection__nex_warning_letter__validity_status__upcoming
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_search
+msgid "Upcoming"
+msgstr "Akan Datang"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "Use the Issue, Cancel and Reset to Draft buttons to change the status of a warning letter."
+msgstr "Gunakan tombol Terbitkan, Batalkan, dan Kembalikan ke Draf untuk mengubah status surat peringatan."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__validity_status
+msgid "Validity"
+msgstr "Masa Berlaku"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_res_company.py:0
+#: model:ir.actions.report,name:nexa_warning_letter.nexa_action_report_warning_letter
+#: model:ir.model,name:nexa_warning_letter.model_nex_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form_my
+msgid "Warning Letter"
+msgstr "Surat Peringatan"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_res_company.py:0
+msgid "Warning Letter 1"
+msgstr "Surat Peringatan 1"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_res_company.py:0
+msgid "Warning Letter 2"
+msgstr "Surat Peringatan 2"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_res_company.py:0
+msgid "Warning Letter 3"
+msgstr "Surat Peringatan 3"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_hr_employee__nex_warning_letter_count
+msgid "Warning Letter Count"
+msgstr "Jumlah Surat Peringatan"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_res_company.py:0
+msgid "Warning Letter Numbering"
+msgstr "Penomoran Surat Peringatan"
+
+#. module: nexa_warning_letter
+#: model:ir.model,name:nexa_warning_letter.model_nex_warning_letter_type
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_type_view_form
+msgid "Warning Letter Type"
+msgstr "Jenis Surat Peringatan"
+
+#. module: nexa_warning_letter
+#: model:ir.actions.act_window,name:nexa_warning_letter.nexa_action_warning_letter_type
+#: model:ir.ui.menu,name:nexa_warning_letter.nexa_menu_warning_letter_type
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_type_view_list
+msgid "Warning Letter Types"
+msgstr "Jenis Surat Peringatan"
+
+#. module: nexa_warning_letter
+#: model:mail.template,name:nexa_warning_letter.nexa_mail_template_warning_issued
+msgid "Warning Letter: Issued"
+msgstr "Surat Peringatan: Diterbitkan"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_hr_employee.py:0
+#: model:ir.actions.act_window,name:nexa_warning_letter.nexa_action_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_hr_employee__nex_warning_letter_ids
+#: model:ir.ui.menu,name:nexa_warning_letter.nexa_menu_warning_letter_all
+#: model:ir.ui.menu,name:nexa_warning_letter.nexa_menu_warning_letter_root
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_list
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_pivot
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_search
+msgid "Warning Letters"
+msgstr "Surat Peringatan"
+
+#. module: nexa_warning_letter
+#. odoo-python
+#: code:addons/nexa_warning_letter/models/nexa_warning_letter.py:0
+msgid "Warning letter %(type)s issued to %(employee)s."
+msgstr "Surat peringatan %(type)s diterbitkan untuk %(employee)s."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__watcher_names
+msgid "Watched By"
+msgstr "Diamati Oleh"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__watcher_ids
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_warning_letter_view_form
+msgid "Watchers"
+msgstr "Pengamat"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,field_description:nexa_warning_letter.field_nex_warning_letter__website_message_ids
+msgid "Website Messages"
+msgstr "Pesan Website"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__website_message_ids
+msgid "Website communication history"
+msgstr "Riwayat komunikasi website"
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_res_company__nex_warning_notify_email
+#: model:ir.model.fields,help:nexa_warning_letter.field_res_config_settings__nex_warning_notify_email
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_res_config_settings_view_form
+msgid "When a warning letter is issued, the employee receives it by e-mail."
+msgstr "Saat surat peringatan diterbitkan, karyawan menerimanya lewat email."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__acknowledged_on
+msgid "When the employee confirmed having read the warning letter."
+msgstr "Waktu karyawan mengonfirmasi telah membaca surat peringatan."
+
+#. module: nexa_warning_letter
+#: model:ir.model.fields,help:nexa_warning_letter.field_nex_warning_letter__issued_on
+msgid "When the warning letter was issued for the first time."
+msgstr "Waktu surat peringatan pertama kali diterbitkan."
+
+#. module: nexa_warning_letter
+#: model_terms:ir.actions.act_window,help:nexa_warning_letter.nexa_action_my_warning_letters
+msgid "Your warning letters, and the ones you watch, appear here once HR has issued them."
+msgstr "Surat peringatan Anda, dan yang Anda amati, muncul di sini setelah HR menerbitkannya."
+
+#. module: nexa_warning_letter
+#: model:mail.template,subject:nexa_warning_letter.nexa_mail_template_warning_issued
+msgid "[Warning Letter] {{ object.type_id.name }} - {{ object.employee_name }}"
+msgstr "[Surat Peringatan] {{ object.type_id.name }} - {{ object.employee_name }}"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+msgid "for the following reasons:"
+msgstr "dengan alasan berikut:"
+
+#. module: nexa_warning_letter
+#: model_terms:ir.ui.view,arch_db:nexa_warning_letter.nexa_report_warning_letter_document
+msgid "to"
+msgstr "sampai"
