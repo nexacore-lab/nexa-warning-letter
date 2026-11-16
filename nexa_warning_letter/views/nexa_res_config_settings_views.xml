@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="nexa_res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.form.nexa.warning.letter</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='hr']" position="inside">
+                <block title="Warning Letters" name="nexa_warning_letter_setting_container">
+                    <setting id="nex_warning_notify_email_setting" company_dependent="1"
+                             help="When a warning letter is issued, the employee receives it by e-mail.">
+                        <field name="nex_warning_notify_email"/>
+                    </setting>
+                    <setting id="nex_warning_cc_watchers_setting" company_dependent="1"
+                             help="The watchers of a warning letter receive a copy of that e-mail."
+                             invisible="not nex_warning_notify_email">
+                        <field name="nex_warning_cc_watchers"/>
+                    </setting>
+                    <setting id="nex_warning_numbering_setting" string="Numbering" company_dependent="1"
+                             help="Prefix and next number of the warning letters of this company.">
+                        <button name="action_nex_warning_numbering" type="object" string="Numbering"
+                                class="btn-link" icon="oi-arrow-right" groups="base.group_system"/>
+                    </setting>
+                    <setting id="nex_warning_types_setting" string="Types" company_dependent="1"
+                             help="Types of warning letters and their default validity.">
+                        <button name="%(nexa_action_warning_letter_type)d" type="action" string="Warning Letter Types"
+                                class="btn-link" icon="oi-arrow-right"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

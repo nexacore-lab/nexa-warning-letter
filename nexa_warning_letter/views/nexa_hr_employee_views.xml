@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="nexa_hr_employee_view_form" model="ir.ui.view">
+        <field name="name">hr.employee.form.nexa.warning.letter</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_nex_view_warning_letters" type="object"
+                        class="oe_stat_button" icon="fa-exclamation-triangle"
+                        groups="hr.group_hr_user" invisible="not nex_warning_letter_count">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="nex_active_warning_count"/> / <field name="nex_warning_letter_count"/>
+                        </span>
+                        <span class="o_stat_text">Warnings</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

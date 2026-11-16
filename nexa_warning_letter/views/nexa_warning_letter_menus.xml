@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- In the Employees application. Visible to everybody through its children:
+         HR sees all the letters, every employee sees his own ones. -->
+    <menuitem
+        id="nexa_menu_warning_letter_root"
+        name="Warning Letters"
+        parent="hr.menu_hr_root"
+        sequence="4"/>
+
+    <menuitem
+        id="nexa_menu_warning_letter_all"
+        name="Warning Letters"
+        parent="nexa_menu_warning_letter_root"
+        action="nexa_action_warning_letter"
+        sequence="1"
+        groups="hr.group_hr_user"/>
+
+    <menuitem
+        id="nexa_menu_warning_letter_my"
+        name="My Warning Letters"
+        parent="nexa_menu_warning_letter_root"
+        action="nexa_action_my_warning_letters"
+        sequence="2"
+        groups="base.group_user"/>
+
+    <menuitem
+        id="nexa_menu_warning_letter_type"
+        name="Warning Letter Types"
+        parent="hr.menu_human_resources_configuration"
+        action="nexa_action_warning_letter_type"
+        sequence="40"
+        groups="hr.group_hr_manager"/>
+
+</odoo>

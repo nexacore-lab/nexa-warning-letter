@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="nexa_action_report_warning_letter" model="ir.actions.report">
+        <field name="name">Warning Letter</field>
+        <field name="model">nex.warning.letter</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">nexa_warning_letter.nexa_report_warning_letter</field>
+        <field name="report_file">nexa_warning_letter.nexa_report_warning_letter</field>
+        <field name="print_report_name">'%s - %s' % (object.name or 'Draft', object.employee_name)</field>
+        <field name="binding_model_id" ref="model_nex_warning_letter"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="nexa_report_warning_letter_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="text-center mb-4">
+                    <h2 class="mb-1" style="text-transform: uppercase;" t-out="o.type_id.name"/>
+                    <div t-if="o.name">No. <span t-out="o.name"/></div>
+                    <div t-else="" class="text-muted">Draft</div>
+                </div>
+                <table class="table table-sm table-borderless mb-4" style="width: auto;">
+                    <tr>
+                        <td style="width: 160px;"><strong>To</strong></td>
+                        <td t-out="o.employee_name"/>
+                    </tr>
+                    <tr t-if="o.job_title">
+                        <td><strong>Job Position</strong></td>
+                        <td t-out="o.job_title"/>
+                    </tr>
+                    <tr t-if="o.department_id">
+                        <td><strong>Department</strong></td>
+                        <td t-out="o.department_id.name"/>
+                    </tr>
+                    <tr>
+                        <td><strong>Validity</strong></td>
+                        <td><span t-field="o.effective_date"/> - <span t-field="o.end_date"/></td>
+                    </tr>
+                </table>
+                <p>
+                    The company gives you this <strong t-out="o.type_id.name"/> for the following reasons:
+                </p>
+                <div class="border rounded p-3 mb-4" style="white-space: pre-line; min-height: 120px;"
+                     t-out="o.notes or ''"/>
+                <p>
+                    This warning letter is valid from <span t-field="o.effective_date"/> to
+                    <span t-field="o.end_date"/>. We expect you to improve and to avoid any repetition.
+                </p>
+                <div class="row mt-5" style="page-break-inside: avoid;">
+                    <div class="col-6 text-center">
+                        <div>Issued by</div>
+                        <div class="text-muted small" t-out="o.company_id.name"/>
+                        <div style="height: 90px;"/>
+                        <div class="border-top mx-4 pt-1">Human Resources</div>
+                        <div class="small" t-if="o.issued_on" t-field="o.issued_on" t-options="{'widget': 'date'}"/>
+                    </div>
+                    <div class="col-6 text-center">
+                        <div>Received by</div>
+                        <div class="text-muted small">Employee</div>
+                        <div style="height: 90px;"/>
+                        <div class="border-top mx-4 pt-1" t-out="o.employee_name"/>
+                        <div class="small" t-if="o.acknowledged_on">
+                            Read on <span t-field="o.acknowledged_on" t-options="{'widget': 'date'}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="nexa_report_warning_letter">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.employee_id.sudo().work_contact_id.lang or o.env.lang"/>
+                <t t-call="nexa_warning_letter.nexa_report_warning_letter_document" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

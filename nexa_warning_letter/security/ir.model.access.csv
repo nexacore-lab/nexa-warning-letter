@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_nex_warning_letter_employee,nex.warning.letter employee,model_nex_warning_letter,base.group_user,1,0,0,0
+access_nex_warning_letter_officer,nex.warning.letter officer,model_nex_warning_letter,hr.group_hr_user,1,1,1,0
+access_nex_warning_letter_manager,nex.warning.letter manager,model_nex_warning_letter,hr.group_hr_manager,1,1,1,1
+access_nex_warning_letter_type_employee,nex.warning.letter.type employee,model_nex_warning_letter_type,base.group_user,1,0,0,0
+access_nex_warning_letter_type_manager,nex.warning.letter.type manager,model_nex_warning_letter_type,hr.group_hr_manager,1,1,1,1

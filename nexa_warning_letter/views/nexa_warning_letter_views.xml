@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ HR ============ -->
+
+    <record id="nexa_warning_letter_view_list" model="ir.ui.view">
+        <field name="name">nex.warning.letter.list</field>
+        <field name="model">nex.warning.letter</field>
+        <field name="arch" type="xml">
+            <list string="Warning Letters" decoration-muted="state == 'cancelled' or validity_status == 'expired'">
+                <field name="name" optional="show"/>
+                <field name="employee_id" widget="many2one_avatar_employee"/>
+                <field name="department_id" optional="show"/>
+                <field name="type_id"/>
+                <field name="effective_date"/>
+                <field name="end_date"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-success="state == 'issued'"
+                       decoration-muted="state == 'cancelled'"/>
+                <field name="validity_status" widget="badge" invisible="state != 'issued'"
+                       decoration-danger="validity_status == 'active'"
+                       decoration-info="validity_status == 'upcoming'"
+                       decoration-muted="validity_status == 'expired'"/>
+                <field name="acknowledged_on" optional="show" widget="date"/>
+                <field name="watcher_ids" widget="many2many_tags" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="nexa_warning_letter_view_form" model="ir.ui.view">
+        <field name="name">nex.warning.letter.form</field>
+        <field name="model">nex.warning.letter</field>
+        <field name="arch" type="xml">
+            <form string="Warning Letter">
+                <header>
+                    <button name="action_issue" type="object" string="Issue" class="btn-primary"
+                            invisible="state != 'draft'"
+                            confirm="Issue this warning letter? The employee and the watchers are notified."/>
+                    <button name="%(nexa_action_report_warning_letter)d" type="action" string="Print"
+                            invisible="state != 'issued'"/>
+                    <button name="action_reset_draft" type="object" string="Reset to Draft"
+                            invisible="state != 'cancelled'"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state not in ('draft', 'issued')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,issued"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Cancelled" bg_color="text-bg-danger"
+                            invisible="state != 'cancelled'"/>
+                    <widget name="web_ribbon" title="Read" bg_color="text-bg-success"
+                            invisible="state != 'issued' or not acknowledged_on"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" invisible="not name"/>
+                            <span invisible="name">Draft</span>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Employee">
+                            <field name="employee_id" widget="many2one_avatar_employee"
+                                   options="{'no_create': True}" readonly="state != 'draft'"/>
+                            <field name="department_id"/>
+                            <field name="job_title"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group string="Warning Letter">
+                            <field name="type_id" options="{'no_create': True}"
+                                   readonly="state != 'draft'"/>
+                            <field name="effective_date" readonly="state != 'draft'"/>
+                            <field name="end_date" readonly="state != 'draft'"/>
+                            <field name="validity_status" widget="badge" invisible="state != 'issued'"
+                                   decoration-danger="validity_status == 'active'"
+                                   decoration-info="validity_status == 'upcoming'"
+                                   decoration-muted="validity_status == 'expired'"/>
+                            <field name="issued_on" invisible="not issued_on"/>
+                            <field name="acknowledged_on" invisible="not acknowledged_on"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Details" name="details">
+                            <field name="notes" readonly="state != 'draft'"
+                                   placeholder="Facts and reasons of the warning letter. The employee and the watchers read this text."/>
+                        </page>
+                        <page string="Internal Note" name="internal_note">
+                            <field name="internal_note"
+                                   placeholder="Only HR can read this note. It is never sent to the employee or to the watchers."/>
+                        </page>
+                    </notebook>
+                    <group>
+                        <group string="Watchers">
+                            <field name="watcher_ids" nolabel="1" colspan="2" widget="many2many_avatar_employee"
+                                   options="{'no_create': True}"
+                                   placeholder="Employees who receive a copy and follow the comments"/>
+                        </group>
+                        <group string="Attachments">
+                            <field name="attachment_ids" nolabel="1" colspan="2" widget="many2many_binary"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="nexa_warning_letter_view_search" model="ir.ui.view">
+        <field name="name">nex.warning.letter.search</field>
+        <field name="model">nex.warning.letter</field>
+        <field name="arch" type="xml">
+            <search string="Warning Letters">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="type_id"/>
+                <field name="department_id" operator="child_of"/>
+                <field name="watcher_ids"/>
+                <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="issued" string="Issued" domain="[('state', '=', 'issued')]"/>
+                <filter name="cancelled" string="Cancelled" domain="[('state', '=', 'cancelled')]"/>
+                <separator/>
+                <filter name="validity_active" string="Active" domain="[('validity_status', '=', 'active')]"/>
+                <filter name="validity_upcoming" string="Upcoming" domain="[('validity_status', '=', 'upcoming')]"/>
+                <filter name="validity_expired" string="Expired" domain="[('validity_status', '=', 'expired')]"/>
+                <separator/>
+                <filter name="not_read" string="Not Read Yet"
+                        domain="[('state', '=', 'issued'), ('acknowledged_on', '=', False)]"/>
+                <separator/>
+                <filter name="effective_date" string="Effective Date" date="effective_date"/>
+                <group>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_type" string="Type" context="{'group_by': 'type_id'}"/>
+                    <filter name="group_department" string="Department" context="{'group_by': 'department_id'}"/>
+                    <filter name="group_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="nexa_warning_letter_view_pivot" model="ir.ui.view">
+        <field name="name">nex.warning.letter.pivot</field>
+        <field name="model">nex.warning.letter</field>
+        <field name="arch" type="xml">
+            <pivot string="Warning Letters" sample="1">
+                <field name="department_id" type="row"/>
+                <field name="type_id" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="nexa_action_warning_letter" model="ir.actions.act_window">
+        <field name="name">Warning Letters</field>
+        <field name="res_model">nex.warning.letter</field>
+        <field name="view_mode">list,form,pivot</field>
+        <field name="search_view_id" ref="nexa_warning_letter_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No warning letter yet</p>
+            <p>Create a warning letter for an employee, with watchers and attachments, then issue it:
+                the employee receives it by e-mail.</p>
+        </field>
+    </record>
+
+    <!-- ============ Employees: their own letters ============ -->
+
+    <record id="nexa_warning_letter_view_list_my" model="ir.ui.view">
+        <field name="name">nex.warning.letter.list.my</field>
+        <field name="model">nex.warning.letter</field>
+        <field name="priority">90</field>
+        <field name="arch" type="xml">
+            <list string="My Warning Letters" create="0" delete="0"
+                  decoration-muted="validity_status == 'expired'" decoration-bf="can_acknowledge">
+                <field name="can_acknowledge" column_invisible="1"/>
+                <field name="name"/>
+                <field name="employee_name"/>
+                <field name="type_id"/>
+                <field name="effective_date"/>
+                <field name="end_date"/>
+                <field name="validity_status" widget="badge"
+                       decoration-danger="validity_status == 'active'"
+                       decoration-info="validity_status == 'upcoming'"
+                       decoration-muted="validity_status == 'expired'"/>
+                <field name="acknowledged_on" widget="date"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="nexa_warning_letter_view_form_my" model="ir.ui.view">
+        <field name="name">nex.warning.letter.form.my</field>
+        <field name="model">nex.warning.letter</field>
+        <field name="priority">90</field>
+        <field name="arch" type="xml">
+            <form string="Warning Letter" create="0" delete="0" edit="0">
+                <header>
+                    <field name="can_acknowledge" invisible="1"/>
+                    <button name="action_acknowledge" type="object" string="I Have Read It"
+                            class="btn-primary" invisible="not can_acknowledge"/>
+                    <button name="%(nexa_action_report_warning_letter)d" type="action" string="Print"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Read" bg_color="text-bg-success"
+                            invisible="not acknowledged_on"/>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                        <h3 class="text-muted"><field name="type_id" readonly="1" options="{'no_open': True}"/></h3>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_name"/>
+                            <field name="job_title"/>
+                            <field name="watcher_names" invisible="not watcher_names"/>
+                        </group>
+                        <group>
+                            <field name="effective_date" readonly="1"/>
+                            <field name="end_date" readonly="1"/>
+                            <field name="validity_status" widget="badge"
+                                   decoration-danger="validity_status == 'active'"
+                                   decoration-info="validity_status == 'upcoming'"
+                                   decoration-muted="validity_status == 'expired'"/>
+                            <field name="acknowledged_on" invisible="not acknowledged_on"/>
+                        </group>
+                    </group>
+                    <separator string="Details"/>
+                    <field name="notes" readonly="1"/>
+                    <separator string="Attachments" invisible="not attachment_ids"/>
+                    <field name="attachment_ids" widget="many2many_binary" readonly="1"
+                           invisible="not attachment_ids"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="nexa_action_my_warning_letters" model="ir.actions.act_window">
+        <field name="name">My Warning Letters</field>
+        <field name="res_model">nex.warning.letter</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state', '=', 'issued'), '|', ('employee_id.user_id', '=', uid), ('watcher_ids.user_id', '=', uid)]</field>
+        <field name="context">{'create': False, 'delete': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No warning letter</p>
+            <p>Your warning letters, and the ones you watch, appear here once HR has issued them.</p>
+        </field>
+    </record>
+
+    <record id="nexa_action_my_warning_letters_list" model="ir.actions.act_window.view">
+        <field name="sequence">1</field>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="nexa_warning_letter_view_list_my"/>
+        <field name="act_window_id" ref="nexa_action_my_warning_letters"/>
+    </record>
+
+    <record id="nexa_action_my_warning_letters_form" model="ir.actions.act_window.view">
+        <field name="sequence">2</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="nexa_warning_letter_view_form_my"/>
+        <field name="act_window_id" ref="nexa_action_my_warning_letters"/>
+    </record>
+
+</odoo>
