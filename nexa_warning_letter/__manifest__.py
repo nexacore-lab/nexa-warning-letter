@@ -1,5 +1,5 @@
 {
-    'name': 'Nexa Warning Letter',
+    'name': 'Employee Warning Letter | Disciplinary Action, SP1 SP2 SP3 & PDF Letter',
     'version': '18.0.1.0.0',
     'summary': 'Warning letter, employee warning letter, disciplinary action, employee discipline, '
                'disciplinary letter, written warning, verbal warning, final warning, reprimand, '
